@@ -6,14 +6,14 @@ import com.hospital.Dao.*;
 import com.hospital.entity.Patient;
 
 public class SearchPatient extends JFrame {
-	private static final long serialVersionUID = 1L;
-	private JTextField searchField;
+    private static final long serialVersionUID = 1L;
+    private JTextField searchField;
     private JTextArea resultArea;
     private PatientDao patientDao = new PatientDaoImpl();
 
     public SearchPatient() {
         setTitle("Search Patient");
-        setSize(700, 500);
+        setSize(750, 500);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
@@ -30,39 +30,33 @@ public class SearchPatient extends JFrame {
         // Navbar
         JPanel navbar = new JPanel();
         navbar.setBackground(new Color(30, 144, 255));
-        navbar.setLayout(new GridLayout(1, 5, 10, 0));
+        navbar.setLayout(new GridLayout(1, 7, 15, 10));
         navbar.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
 
-        navbar.add(createNavButton("Dashboard", e -> {
-            new Dashboard();
-            dispose();
-        }));
-        navbar.add(createNavButton("Add Patient", e -> {
-            new AddPatient();
-            dispose();
-        }));
-        navbar.add(createNavButton("View Patients", e -> {
-            new ViewPatients();
-            dispose();
-        }));
-        navbar.add(createNavButton("Search", e -> {
-            new SearchPatient(); // reload
-            dispose();
-        }));
-        navbar.add(createNavButton("Logout", e -> {
-            new Login();
-            dispose();
-        }));
+        navbar.add(createNavButton("Home", e -> { new Dashboard(); dispose(); }));
+        navbar.add(createNavButton("Add", e -> { new AddPatient(); dispose(); }));
+        navbar.add(createNavButton("View", e -> { new ViewPatients(); dispose(); }));
+        navbar.add(createNavButton("Search", e -> { new SearchPatient(); dispose(); }));
+        navbar.add(createNavButton("Update", e -> { new UpdatePatient(); dispose(); }));
+        navbar.add(createNavButton("Delete", e -> { new DeletePatient(); dispose(); }));
+        navbar.add(createNavButton("Logout", e -> { new Login(); dispose(); }));
+
 
         headerPanel.add(navbar, BorderLayout.SOUTH);
         add(headerPanel, BorderLayout.NORTH);
 
-        // Search Panel
-        JPanel searchPanel = new JPanel();
-        searchPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 20, 20));
+        JPanel centerPanel = new JPanel();
+        centerPanel.setLayout(new GridBagLayout());
+        centerPanel.setBackground(Color.decode("#f0f2f5")); // light background
+
+        JPanel searchPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
+        searchPanel.setBackground(Color.decode("#f0f2f5"));
+
         JLabel searchLabel = new JLabel("Search Patient by ID:");
         searchLabel.setFont(new Font("Segoe UI", Font.BOLD, 14));
+
         searchField = new JTextField(10);
+
         JButton searchButton = new JButton("Search");
         searchButton.setBackground(new Color(34, 139, 34));
         searchButton.setForeground(Color.WHITE);
@@ -75,7 +69,10 @@ public class SearchPatient extends JFrame {
         searchPanel.add(searchLabel);
         searchPanel.add(searchField);
         searchPanel.add(searchButton);
-        add(searchPanel, BorderLayout.CENTER);
+
+        centerPanel.add(searchPanel);
+        add(centerPanel, BorderLayout.CENTER);
+
 
         // Result Area
         resultArea = new JTextArea(10, 50);
@@ -97,6 +94,7 @@ public class SearchPatient extends JFrame {
         btn.setForeground(new Color(30, 144, 255));
         btn.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         btn.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btn.setPreferredSize(new Dimension(130, 35));
         btn.addActionListener(action);
         return btn;
     }

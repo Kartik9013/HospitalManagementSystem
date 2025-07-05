@@ -51,32 +51,45 @@ public class Dashboard extends JFrame {
         sidebar.add(Box.createVerticalGlue());
 
         // Create and add buttons
-        sidebar.add(createStyledButton("➕ Add New Patient", e -> {
+        sidebar.add(createStyledButton("Add New Patient", e -> {
             new AddPatient();
             dispose();
         }));
         sidebar.add(Box.createRigidArea(new Dimension(0, 15)));
 
-        sidebar.add(createStyledButton("📋 View Patients", e -> {
+        sidebar.add(createStyledButton("View Patients", e -> {
             new ViewPatients();
         	dispose();
         }));
         sidebar.add(Box.createRigidArea(new Dimension(0, 15)));
 
-        sidebar.add(createStyledButton("🔍 Search Patient", e -> {
+        sidebar.add(createStyledButton("Search Patient", e -> {
             new SearchPatient();
             dispose();
         }));
         sidebar.add(Box.createRigidArea(new Dimension(0, 15)));
 
-        sidebar.add(createStyledButton("✏️ Update Patient", e -> {
-            JOptionPane.showMessageDialog(this, "Update Patient feature coming soon!");
+        sidebar.add(createStyledButton("Update Patient", e -> {
+            new UpdatePatient();
+            dispose();
         }));
         sidebar.add(Box.createRigidArea(new Dimension(0, 15)));
 
-        sidebar.add(createStyledButton("❌ Delete Patient", e -> {
-            JOptionPane.showMessageDialog(this, "Delete Patient feature coming soon!");
+        sidebar.add(createStyledButton("Delete Patient", e -> {
+            new DeletePatient();
+            dispose();
         }));
+
+        sidebar.add(Box.createRigidArea(new Dimension(0, 30)));
+
+        // Logout button
+        sidebar.add(createStyledButton("Logout", e -> {
+            new Login();
+            dispose();
+        }));
+
+        sidebar.add(Box.createVerticalGlue());
+
 
         sidebar.add(Box.createVerticalGlue());
 

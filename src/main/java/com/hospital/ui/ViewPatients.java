@@ -30,31 +30,19 @@ public class ViewPatients extends JFrame {
 
         headerPanel.add(titleLabel, BorderLayout.NORTH);
 
-        // ===== NAVBAR =====
-        JPanel navbar = new JPanel(new GridLayout(1, 5, 10, 0));
+     // Navbar
+        JPanel navbar = new JPanel();
         navbar.setBackground(new Color(30, 144, 255));
+        navbar.setLayout(new GridLayout(1, 7, 15, 10));
         navbar.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
 
-        navbar.add(createNavButton("Dashboard", e -> {
-            new Dashboard();
-            dispose();
-        }));
-        navbar.add(createNavButton("Add Patient", e -> {
-            new AddPatient();
-            dispose();
-        }));
-        navbar.add(createNavButton("View Patients", e -> {
-            new ViewPatients();  // reload
-            dispose();
-        }));
-        navbar.add(createNavButton("Search", e -> {
-            new SearchPatient();
-            dispose();
-        }));
-        navbar.add(createNavButton("Logout", e -> {
-            new Login();
-            dispose();
-        }));
+        navbar.add(createNavButton("Home", e -> { new Dashboard(); dispose(); }));
+        navbar.add(createNavButton("Add", e -> { new AddPatient(); dispose(); }));
+        navbar.add(createNavButton("View", e -> { new ViewPatients(); dispose(); }));
+        navbar.add(createNavButton("Search", e -> { new SearchPatient(); dispose(); }));
+        navbar.add(createNavButton("Update", e -> { new UpdatePatient(); dispose(); }));
+        navbar.add(createNavButton("Delete", e -> { new DeletePatient(); dispose(); }));
+        navbar.add(createNavButton("Logout", e -> { new Login(); dispose(); }));
 
         headerPanel.add(navbar, BorderLayout.SOUTH);
         add(headerPanel, BorderLayout.NORTH);

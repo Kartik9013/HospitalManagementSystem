@@ -7,8 +7,8 @@ import com.hospital.entity.Patient;
 public interface PatientDao {
 	boolean savePatient(Patient patient);
 	Patient getPatient(int id);
-	void updatePatient(Patient patient);
-	void deletePatient(int id);
+	boolean updatePatient(Patient patient);
+	boolean deletePatient(int id);
 	List<Patient> getAllPatients();
 	Patient getPatientById(int id);
 
