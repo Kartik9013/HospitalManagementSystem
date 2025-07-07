@@ -45,21 +45,5 @@ Make sure you have a MySQL database created and update the credentials in hibern
 <property name="connection.username">root</property>
 <property name="connection.password">your_password</property>
 
-📁 Project Structure
-
-src/
-├── main/
-│   ├── java/
-│   │   └── com.hospital/
-│   │       ├── ui/           # Java Swing UI classes
-│   │       ├── entity/       # Hibernate Entity (Patient.java)
-│   │       └── dao/          # DAO interface and implementation
-│   │       └── util/
-│   │       └── main/
-│   └── resources/
-│       └── hibernate.cfg.xml
-└── pom.xml
-
-
 🙋‍♂️ Author
 Kartik Thakur
