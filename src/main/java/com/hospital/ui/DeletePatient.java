@@ -118,15 +118,17 @@ public class DeletePatient extends JFrame {
                 return;
             }
 
-            // Show patient details
+            // Show full patient details
             StringBuilder sb = new StringBuilder();
             sb.append("Patient Details:\n");
-            sb.append("ID: ").append(patient.getId()).append("\n");
-            sb.append("Name: ").append(patient.getName()).append("\n");
-            sb.append("Room: ").append(patient.getRoomNumber()).append("\n");
-            sb.append("Gender: ").append(patient.getGender()).append("\n");
-            sb.append("Address: ").append(patient.getAddress()).append("\n");
-            sb.append("Phone: ").append(patient.getPhone()).append("\n");
+            sb.append("ID       : ").append(patient.getId()).append("\n");
+            sb.append("Name     : ").append(patient.getName()).append("\n");
+            sb.append("Room     : ").append(patient.getRoomNumber()).append("\n");
+            sb.append("Gender   : ").append(patient.getGender()).append("\n");
+            sb.append("Address  : ").append(patient.getAddress()).append("\n");
+            sb.append("Phone    : ").append(patient.getPhone()).append("\n");
+            sb.append("Disease  : ").append(patient.getDisease()).append("\n");
+            sb.append("Treated  : ").append(patient.isTreated() ? "Yes" : "No").append("\n");
 
             resultArea.setText(sb.toString());
             deleteBtn.setEnabled(true);  // Enable delete only after successful load
@@ -135,6 +137,7 @@ public class DeletePatient extends JFrame {
             JOptionPane.showMessageDialog(this, "Invalid ID. Please enter a valid numeric ID.");
         }
     }
+
 
     private void deletePatient() {
         String input = idField.getText().trim();

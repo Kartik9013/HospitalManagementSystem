@@ -13,7 +13,7 @@ import com.hospital.entity.Patient;
 public class UpdatePatient extends JFrame {
 	private static final long serialVersionUID = 1L;
 	
-	private JTextField idField, nameField, roomField, dobField, addressField, phoneField;
+	private JTextField idField, nameField, roomField, dobField, addressField, phoneField,diseaseField;
     private JComboBox<String> genderBox;
     private JCheckBox treatedCheck;
     private JButton loadBtn, updateBtn, refreshBtn;
@@ -54,7 +54,7 @@ public class UpdatePatient extends JFrame {
         add(headerPanel, BorderLayout.NORTH);
 
         // === FORM PANEL ===
-        JPanel formPanel = new JPanel(new GridLayout(9, 2, 10, 12));
+        JPanel formPanel = new JPanel(new GridLayout(10, 2, 10, 12));
         formPanel.setBorder(BorderFactory.createEmptyBorder(30, 50, 30, 50));
         formPanel.setBackground(new Color(245, 250, 255));
 
@@ -64,6 +64,7 @@ public class UpdatePatient extends JFrame {
         dobField = new JTextField();
         genderBox = new JComboBox<>(new String[]{"Male", "Female", "Other"});
         addressField = new JTextField();
+        diseaseField = new JTextField();
         phoneField = new JTextField();
         treatedCheck = new JCheckBox("Treated");
 
@@ -112,6 +113,9 @@ public class UpdatePatient extends JFrame {
 
         formPanel.add(new JLabel("Phone:"));
         formPanel.add(phoneField);
+        
+        formPanel.add(new JLabel("Disease:"));
+        formPanel.add(diseaseField);
 
         formPanel.add(new JLabel("Treated?"));
         formPanel.add(treatedCheck);
@@ -146,6 +150,7 @@ public class UpdatePatient extends JFrame {
                     genderBox.setSelectedItem(patient.getGender());
                     addressField.setText(patient.getAddress());
                     phoneField.setText(patient.getPhone());
+                    diseaseField.setText(patient.getDisease());
                     treatedCheck.setSelected(patient.isTreated());
 
                     idField.setEnabled(false);
@@ -167,10 +172,11 @@ public class UpdatePatient extends JFrame {
                 String gender = genderBox.getSelectedItem().toString();
                 String address = addressField.getText().trim();
                 String phone = phoneField.getText().trim();
+                String disease = diseaseField.getText().trim();
                 boolean treated = treatedCheck.isSelected();
 
-                Patient updated = new Patient(name, room, dob, gender, address, phone, treated);
-                updated.setId(id);  // Needed for update
+                Patient updated = new Patient(name, room, dob, gender, address, phone, treated, disease);
+                updated.setId(id);  
 
                 PatientDao dao = new PatientDaoImpl();
                 boolean success = dao.updatePatient(updated);
@@ -196,6 +202,7 @@ public class UpdatePatient extends JFrame {
             genderBox.setSelectedIndex(0);
             addressField.setText("");
             phoneField.setText("");
+            diseaseField.setText("");
             treatedCheck.setSelected(false);
 
             idField.setEnabled(true);

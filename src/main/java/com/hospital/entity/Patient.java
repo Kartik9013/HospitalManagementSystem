@@ -27,6 +27,10 @@ public class Patient {
 	private String address;
 	private String phone;
 	
+	@Column(name = "disease")
+	private String disease;
+
+	
 	@Column(name = "is_treated")
 	private boolean isTreated;
 
@@ -35,7 +39,7 @@ public class Patient {
 	}
 
 	public Patient(String name, String roomNumber, LocalDate dob, String gender, String address, String phone,
-			boolean isTreated) {
+			boolean isTreated,String disease) {
 		super();
 		this.name = name;
 		this.roomNumber = roomNumber;
@@ -44,6 +48,7 @@ public class Patient {
 		this.address = address;
 		this.phone = phone;
 		this.isTreated = isTreated;
+		this.disease = disease;
 	}
 
 
@@ -110,6 +115,14 @@ public class Patient {
 
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+
+	public String getDisease() {
+		return disease;
+	}
+
+	public void setDisease(String disease) {
+		this.disease = disease;
 	}
 
 	@Override

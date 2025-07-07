@@ -48,7 +48,7 @@ public class AddPatient extends JFrame {
 
 
         // === FORM PANEL ===
-        JPanel formPanel = new JPanel(new GridLayout(8, 2, 10, 12));
+        JPanel formPanel = new JPanel(new GridLayout(9, 2, 10, 12));
         formPanel.setBorder(BorderFactory.createEmptyBorder(30, 50, 30, 50));
         formPanel.setBackground(new Color(245, 250, 255));
 
@@ -58,6 +58,7 @@ public class AddPatient extends JFrame {
         JComboBox<String> genderBox = new JComboBox<>(new String[]{"Male", "Female", "Other"});
         JTextField addressField = new JTextField();
         JTextField phoneField = new JTextField();
+        JTextField diseaseField = new JTextField();
         JCheckBox treatedCheck = new JCheckBox("Treated");
 
         formPanel.add(new JLabel("Patient Name:"));
@@ -77,6 +78,9 @@ public class AddPatient extends JFrame {
 
         formPanel.add(new JLabel("Phone:"));
         formPanel.add(phoneField);
+        
+        formPanel.add(new JLabel("Disease:"));
+        formPanel.add(diseaseField);
 
         formPanel.add(new JLabel("Treated?"));
         formPanel.add(treatedCheck);
@@ -97,9 +101,10 @@ public class AddPatient extends JFrame {
             String gender = genderBox.getSelectedItem().toString();
             String address = addressField.getText().trim();
             String phone = phoneField.getText().trim();
+            String disease = diseaseField.getText().trim();
             boolean treated = treatedCheck.isSelected();
 
-            if (name.isEmpty() || room.isEmpty() || dobStr.isEmpty() || address.isEmpty() || phone.isEmpty()) {
+            if (name.isEmpty() || room.isEmpty() || dobStr.isEmpty() || address.isEmpty() || phone.isEmpty() || disease.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "All fields are required.", "Input Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
@@ -108,7 +113,7 @@ public class AddPatient extends JFrame {
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
                 LocalDate dob = LocalDate.parse(dobStr, formatter);
 
-                Patient patient = new Patient(name, room, dob, gender, address, phone, treated);
+                Patient patient = new Patient(name, room, dob, gender, address, phone, treated, disease);
                 PatientDao dao = new PatientDaoImpl();
                 dao.savePatient(patient);
 

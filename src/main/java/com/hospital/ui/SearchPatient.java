@@ -113,7 +113,7 @@ public class SearchPatient extends JFrame {
 
             if (patient != null) {
                 resultArea.setText(
-                    "Patient Details:\n\n" +
+                    "Patient Details:\n" +
                     "ID         : " + patient.getId() + "\n" +
                     "Name       : " + patient.getName() + "\n" +
                     "Gender     : " + patient.getGender() + "\n" +
@@ -121,6 +121,7 @@ public class SearchPatient extends JFrame {
                     "DOB        : " + patient.getDob() + "\n" +
                     "Phone      : " + patient.getPhone() + "\n" +
                     "Address    : " + patient.getAddress() + "\n" +
+                    "Disease    : " + patient.getDisease() + "\n" +
                     "Is Treated : " + (patient.isTreated() ? "Yes" : "No")
                 );
             } else {
