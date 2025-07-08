@@ -47,7 +47,7 @@ public class ViewPatients extends JFrame {
         add(headerPanel, BorderLayout.NORTH);
 
         // ===== TABLE PANEL =====
-        String[] columnNames = {"ID", "Name", "Room", "DOB", "Gender", "Address", "Phone", "Treated", "Action"};
+        String[] columnNames = {"ID", "Name", "Room", "DOB", "Gender", "Address", "Phone", "Treated","Disease", "Action"};
         DefaultTableModel model = new DefaultTableModel(columnNames, 0);
         JTable table = new JTable(model);
         table.setRowHeight(30);
@@ -78,6 +78,7 @@ public class ViewPatients extends JFrame {
                 p.getAddress(),
                 p.getPhone(),
                 p.isTreated() ? "Yes" : "No",
+                p.getDisease(),
                 "Delete"
             };
             model.addRow(row);
